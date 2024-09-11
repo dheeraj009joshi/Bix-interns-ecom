@@ -62,8 +62,11 @@ const OrderSchema = new Schema({//Creating Array of Objects
     shippingDate: Date,
     deliveryDate: Date,
     review: {
-        type: String,
-        images: String 
+        text: { type: String },  // Text review field
+        images: [{
+            type: String 
+        }]
+    
 });
 
 // Pre-save hook to calculate total price before saving
