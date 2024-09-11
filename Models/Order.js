@@ -8,11 +8,11 @@ const OrderSchema = new Schema({//Creating Array of Objects
         ref: 'User', // Referencing to user
         required: true
     },
-    items: [//Defining items such as type of product,availablity and price
+    items: [//Defining items such as type of product, availability and price
         {
             product: {
                 type: mongoose.Schema.Types.ObjectId,//Unique Id
-                ref: 'Product', // Assuming you have a Product model
+                ref: 'Product', 
                 required: true
             },
             quantity: {
@@ -34,12 +34,12 @@ const OrderSchema = new Schema({//Creating Array of Objects
     },
     paymentMethod: {
         type: String,
-        enum: ['Paytm','AmazonPay','Wallet','UPI', 'Debit Card', 'Credit Card', 'Cash on Delivery'],
+        enum: ['Paytm', 'AmazonPay', 'Wallet',' UPI', 'Debit Card', 'Credit Card', 'Cash on Delivery'],
         required: true
     },
     paymentStatus: {
         type: String,
-        enum: ['Pending', 'Paid', 'Failed'],
+        enum: ['Pending', 'Paid', 'Failed',' Try Again'],
         default: 'Pending'
     },
     paymentDetails: {
@@ -60,11 +60,14 @@ const OrderSchema = new Schema({//Creating Array of Objects
         default: Date.now
     },
     shippingDate: Date,
-    deliveryDate: Date
+    deliveryDate: Date,
+    review: {
+        type: String,
+        images: String 
 });
 
 // Pre-save hook to calculate total price before saving
-OrderSchema.pre('save', function (next) {
+OrderSchema.pre('save', function (next) {//Pre-save Middleware
     const order = this;
     order.totalPrice = order.items.reduce((total, item) => total + item.quantity * item.price, 0);
     next();
