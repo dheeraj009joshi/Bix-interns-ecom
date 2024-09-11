@@ -3,7 +3,7 @@ require('dotenv').config();
 const config = {
   port: process.env.PORT || 3000,
   dbUri: process.env.DB_URL || 'mongodb://localhost:27017/ecommerce',
-  jwtSecret: process.env.JWT_SECRET || 'Shradha',
+  jwtSecret: process.env.JWT_SECRET || 'Shraddha',
 };
 
 module.exports = config;
