@@ -1,4 +1,4 @@
-const Order = require('../models/Order');
+const Order = require('../Models/Order');
 const createOrder = async (req, res) => {
     try {
         const { user, items, shippingAddress, paymentMethod } = req.body;
@@ -7,7 +7,7 @@ const createOrder = async (req, res) => {
             items,
             shippingAddress,
             paymentMethod,
-            totalPrice: 0 // This will be auto-calculated
+            totalPrice: 0 
         });
 
         await order.save();
