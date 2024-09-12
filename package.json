@@ -1,0 +1,25 @@
+{
+  "name": "E-com",
+  "version": "1.0.0",
+  "description": "This is a project which is created while interns training phase two",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shraddha318/Bix-interns-ecom.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shraddha318/Bix-interns-ecom/issues"
+  },
+  "homepage": "https://github.com/Shraddha318/Bix-interns-ecom#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0",
+    "morgan": "^1.10.0"
+  }
+}

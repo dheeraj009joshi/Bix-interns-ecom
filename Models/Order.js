@@ -67,6 +67,7 @@ const OrderSchema = new Schema({//Creating Array of Objects
             type: String 
         }]
     
+    }
 });
 
 // Pre-save hook to calculate total price before saving
