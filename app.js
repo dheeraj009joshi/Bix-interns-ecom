@@ -20,7 +20,8 @@ app.use(cors());
 
 
 // Mount routers
-app.use('/api/v1/project', require('./routes/v1/projectRoutes'));
+app.use('/api/v1/order', require('./Routes/orderRoute'));
+app.use('/api/v1/product', require('./Routes/productRoute'));
 
 // Error handling middleware
 app.use(errorHandler);
