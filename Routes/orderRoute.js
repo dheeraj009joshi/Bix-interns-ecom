@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-import {getOrderById,createOder} from "../Controllers/orderControllers" ;
+import {getOrderById,createOder, getAllOrders, deleteOrder ,updateOrder} from "../Controllers/orderControllers" ;
 
 
 app.route("/")
