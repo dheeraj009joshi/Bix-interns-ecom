@@ -1,4 +1,4 @@
-const User = require('../models/User');  // Import the User model
+const User = require('../Models/user');  // Import the User model
 const jwt = require('jsonwebtoken');  // For token generation
 
 // Register a new user
@@ -12,11 +12,12 @@ exports.registerUser = async (req, res, next) => {
       return res.status(400).json({ success: false, message: 'User already exists' });
     }
 
-    // Create a new user 
+    // Create a new user
     const user = await User.create({
       username,
       email,
-      password  // Store the password 
+      password  // Store the password (no hashing for simplicity as requested)
+    });
 
     // Generate a JWT token
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
@@ -25,7 +26,7 @@ exports.registerUser = async (req, res, next) => {
 
     res.status(201).json({ success: true, token });
   } catch (error) {
-    next(error);
+    next(error);  // Call the next middleware with error
   }
 };
 
@@ -52,9 +53,10 @@ exports.loginUser = async (req, res, next) => {
 
     res.status(200).json({ success: true, token });
   } catch (error) {
-    next(error);
+    next(error);  // Call the next middleware with error
   }
 };
+
 
 // Get current user (only for authenticated users)
 exports.getCurrentUser = async (req, res, next) => {
