@@ -12,10 +12,10 @@ app.route('/')
 
 // Route to handle operations on a specific product by ID
 app.route('/:id')
-      .get(protect, getProductById)   // Get a specific product by ID 
-      .patch(protect, updateProduct)  // Partially update product by ID 
-      .put(protect, updateProduct)    // Fully update a product by ID 
-      .delete(protect, deleteProduct); // Delete a product by ID 
+      .get(protect, getProductById)  
+      .patch(protect, updateProduct)  
+      .put(protect, updateProduct)  
+      .delete(protect, deleteProduct);  
 
 module.exports = router;
 
