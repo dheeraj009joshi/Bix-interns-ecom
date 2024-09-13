@@ -1,6 +1,7 @@
 const { json } = require('body-parser');
 const Order = require('../Models/Order');
 const User= require('../Models/User');
+const jwt = require('jsonwebtoken');  
 
 // Register a new user
 exports.registerUser = async (req, res, next) => {
