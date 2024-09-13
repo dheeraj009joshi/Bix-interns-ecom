@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const protect = require('../Middlewares/auth');
+const {getOrderById,createOder, getAllOrders, deleteOrder ,updateOrder} = require("../Controllers/orderControllers") ;
 
-import {getOrderById,createOder, getAllOrders, deleteOrder ,updateOrder} from "../Controllers/orderControllers" ;
 
-
-app.route("/")
-      .get(protect,getAllOrders)
-      .post(protect, createOder)
+router.route("/")
+      .get(getAllOrders)
+      .post(createOder)
 
 
 
       
-app.route("/:id")
-      .get(protect,getOrderById)
-      // .patch(protect, deleteOrder)
-      // .put(protect,updateOrder)
+router.route("/:id")
+      .get(getOrderById)
+      .patch( deleteOrder)
+      .put(updateOrder)
       
 
 

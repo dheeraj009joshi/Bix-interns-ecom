@@ -1,6 +1,6 @@
 const { json } = require('body-parser');
 const Order = require('../Models/Order');
-const User= require('../Models/User');
+const User= require('../Models/userModel');
 const jwt = require('jsonwebtoken');  
 
 // Register a new user
@@ -55,6 +55,21 @@ exports.loginUser = async (req, res, next) => {
 
 // Get current user (only for authenticated users)
 exports.getCurrentUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.id).populate('createdOrders', 'orderNumber totalAmount');
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    console.log(error);  // Log error
+    next(error);  // Forward error to error handler
+  }
+};
+// Get all  user (only for authenticated users)
+exports.getAllUsers = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id).populate('createdOrders', 'orderNumber totalAmount');
 

@@ -23,13 +23,14 @@ const ProductSchema = new Schema({
         required: true
     },
     category: {
-        type: { type: String, enum: ["Electronics", "Hardware","Cloths", "Gifts","Fashion", "Snacks"] },
+    type: String, enum: ["Electronics", "Hardware","Cloths", "Gifts","Fashion", "Snacks"] ,
         required: true
     },
     ImageGallery: [{
         type: String,
        
     }],
+
     thumbnail:{type:String}
 });
 
