@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } = require('../Controllers/productControl');  // Import product controller methods
 
-const { protect } = require('../Middlewares/authMiddleware');  
+const { protect } = require('../Middlewares/auth');  
 
 // Route to handle product creation and fetching all products
 app.route('/')
