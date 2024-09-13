@@ -13,8 +13,8 @@ app.route("/")
       
 app.route("/:id")
       .get(protect,getOrderById)
-      .patch(protect, deleteOrder)
-      .put(protect,updateOrder)
+      // .patch(protect, deleteOrder)
+      // .put(protect,updateOrder)
       
 
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } = require('../Controllers/productControl');  // Import product controller methods
+const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } = require('../Controllers/productControllers');  // Import product controller methods
 
 const { protect } = require('../Middlewares/auth');  
 

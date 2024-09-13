@@ -17,10 +17,16 @@ const UserSchema = new Schema({
         required: true
     },
     role: { type: String, enum: ["Admin", "User"], default: "User" },
-    createdOrders: [{
+    Orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order'
+    }],
+
+    Cart : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cart'
     }]
+
 });
 
 module.exports = mongoose.model('User', UserSchema);
