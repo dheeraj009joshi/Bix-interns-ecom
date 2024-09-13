@@ -1,12 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const morgan = require('morgan');
 const connectDB = require('./config/db');
 const errorHandler = require('./middlewares/errorMiddleware');
 const cors = require('cors');
 
 // Load environment variables
-dotenv.config({ path: './.env' });
+dotenv.config({ path: '.env' });
 
 // Connect to the database
 connectDB();
