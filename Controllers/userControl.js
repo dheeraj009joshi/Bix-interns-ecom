@@ -1,5 +1,6 @@
-const User = require('../Models/user');  // Import the User model
-const jwt = require('jsonwebtoken');  // For token generation
+const { json } = require('body-parser');
+const Order = require('../Models/Order');
+const User= require('../Models/User');
 
 // Register a new user
 exports.registerUser = async (req, res, next) => {
