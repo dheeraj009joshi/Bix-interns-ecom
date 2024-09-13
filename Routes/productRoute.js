@@ -1,10 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send('Product route');
-});
+const { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } = require('../Controllers/productControl');  // Import product controller methods
 
-module.exports = router; 
+const { protect } = require('../Middlewares/auth');  
+
+// Route to handle product creation and fetching all products
+app.route('/')
+      .get(protect, getAllProducts)   // Get all products 
+      .post(protect, createProduct);  // Create a new product
+
+// Route to handle operations on a specific product by ID
+app.route('/:id')
+      .get(protect, getProductById)  
+      .patch(protect, updateProduct)  
+      .put(protect, updateProduct)  
+      .delete(protect, deleteProduct);  
+
+module.exports = router;
+
+
 
 

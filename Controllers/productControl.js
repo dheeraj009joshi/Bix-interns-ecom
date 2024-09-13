@@ -1,41 +1,42 @@
+const { json } = require('body-parser');
 const Product = require('../Models/product');
+const Order= require('../Models/Order');
 
 // Create a new product
-exports.createProduct = async (req, res) => {
+exports.createProduct = async (req, res, next) => {
   try {
-    const product = new Product(req.body);  // Create a new product from request body
-    await product.save();  // Save it to the database
-    res.status(201).json({ success: true, data: product });  // Return the created product
+    const product = await Product.create(req.body);  // Create product using `create`
+    res.status(201).json({ success: true, data: product });  // Return created product
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);  // Pass error to the handler
   }
 };
 
 // Get all products
-exports.getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res, next) => {
   try {
     const products = await Product.find();  // Get all products
     res.status(200).json({ success: true, data: products });  // Return all products
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);  // Pass error to the handler
   }
 };
 
 // Get a single product by ID
-exports.getProductById = async (req, res) => {
+exports.getProductById = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);  // Find product by ID
     if (!product) {
       return res.status(404).json({ success: false, message: 'Product not found' });
     }
-    res.status(200).json({ success: true, data: product });  // Return the found product
+    res.status(200).json({ success: true, data: product });  // Return found product
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);  // Pass error to the handler
   }
 };
 
 // Update a product by ID
-exports.updateProduct = async (req, res) => {
+exports.updateProduct = async (req, res, next) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!product) {
@@ -43,12 +44,12 @@ exports.updateProduct = async (req, res) => {
     }
     res.status(200).json({ success: true, data: product });  // Return updated product
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);  // Pass error to the handler
   }
 };
 
 // Delete a product by ID
-exports.deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res, next) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);  // Delete product by ID
     if (!product) {
@@ -56,7 +57,6 @@ exports.deleteProduct = async (req, res) => {
     }
     res.status(200).json({ success: true, message: 'Product deleted successfully' });  // Confirm deletion
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    next(error);  // Pass error to the handler
   }
 };
-
