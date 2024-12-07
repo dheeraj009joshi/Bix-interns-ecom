@@ -1,1 +1,0 @@
-This is a project which is created while interns training phase two 
